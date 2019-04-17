@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW4jgCsakUYTdpBDnvFlqYr6Qb9gxWLbVIltFGsOeBNs63yPDLoA'); background-repeat: no-repeat; background-size: cover;">     
+    {% for pic in pics %}     
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 columns"> 
+        <div class="scale">
+          
+                <h5 class="modal-title" id="imageTitle">{{pic.name}}</h5>
+                </button>
+            <img src="{{pic.image.url}}" alt="Image" class="img-fluid">  
+            <br>
+            <strong>Description:</strong> {{pic.description}}
+            <br>
+            <strong>Location:</strong> {{pic.location}}
+            <br>
+            <strong>Category:</strong> {{pic.category}}
+    
+        <div class="container">
+        
+        
+        
+      </div> 
+
+  </div>
+
+</div>
+    {% endfor %}
+</div>
+
+{% endblock %}

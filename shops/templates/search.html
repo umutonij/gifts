@@ -1,0 +1,68 @@
+{%extends 'base.html'%} 
+{% block content %}
+<div class="container" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW4jgCsakUYTdpBDnvFlqYr6Qb9gxWLbVIltFGsOeBNs63yPDLoA'); background-repeat: no-repeat; background-size: cover;">
+
+  <div class="row">
+    {% if images%}
+      <h2 style="text-align:center;">Found {{ images|length }} images of searched term {{message}}</h2>
+    {% else %}
+      <h2 style="text-align:center;"> Found 0 images for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+    
+  {% if images %}
+    {% for image in images %}
+    <div class="col-md-4" style="padding: 40px;">
+        
+        <img style=" margin-top: 20px; margin-bottom: 20px; width:300px; height:300px;" src="{{image.image.url}}" class="img-thumbnail" alt="Image" data-toggle="modal" data-target="#{{image.id}}">
+        <button class="btn btn-danger">{{image.price}}</button>
+        <br>
+                <strong>Description:</strong> {{image.description}}
+                <br>
+                <strong>Size:</strong> {{image.size}}
+                <br>
+                <strong>Category:</strong> {{image.category}}
+                <br>
+                <strong>Price:</strong> {{image.price}}
+        
+      <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
+        <div  style="max-width:100%; max-height:100%; padding-top:100px;" class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h5 class="modal-title" id="imageTitle"><strong></strong>{{image.name}}</strong></h5>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="{{image.image.url}}" style="width:570px; height:500px;" alt="Image">
+              <br>
+                <strong>Price:</strong> {{image.price}}
+                <br>
+                <strong>Description:</strong> {{image.description}}
+                <br>
+                <strong>Size:</strong> {{image.size}}
+                <br>
+                <strong>Category:</strong> {{image.category}}
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function copyUrl(element) {
+        var myVar = document.getElementById(element);
+        myVar.select();
+        document.execCommand('copy');
+        alert("Copied the link of image: " + myVar.value);  
+      }
+    </script>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
