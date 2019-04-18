@@ -12,6 +12,7 @@ urlpatterns=[
     url(r'^categories/', views.display_images_categories, name = 'categories'),
     url(r'^profile/', views.profile, name='profile'),
     url(r'^myProfile/(\d+)', views.myProfile, name='myProfile'),
+    url(r'^new/project$', views.new_project, name='new-project'),
 
 ]
 if settings.DEBUG:

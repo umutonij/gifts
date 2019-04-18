@@ -86,3 +86,18 @@ class Image(models.Model):
 
     class Meta:
         ordering = ['name']
+
+class Project(models.Model):
+    first_name = models.CharField(max_length = 30,null = True)
+    last_name = models.CharField(max_length = 30,null = True)
+    location = models.CharField(max_length = 30,null = True)
+    road_number = models.CharField(max_length = 30,null = True)
+    house_number = models.CharField(max_length = 30,null = True)
+    choice = models.CharField(max_length = 30,null = True)
+    name = models.CharField(max_length = 30,null = True)
+    size = models.CharField(max_length = 30,null = True)
+    
+    
+
+    def __str__(self):
+        return self.title

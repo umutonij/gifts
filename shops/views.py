@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 from .models import Image,Category, Profile
-from .forms import  ProfileForm
+from .forms import  ProfileForm,NewProjectForm
 from django.contrib.auth.models import User
 
 def shops(request):
@@ -47,3 +47,19 @@ def profile(request):
     else:
         form = ProfileForm()
     return render(request, 'profile_form.html', {"form": form})
+
+def new_project(request):
+    
+        current_user = request.user
+        title = 'New project'
+        if request.method == 'POST':
+            form = NewProjectForm(request.POST, request.FILES)
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.user = current_user
+                project.save()
+            return redirect('shops')
+
+        else:
+            form = NewProjectForm()
+        return render(request, 'new_project.html', {"form": form,"current_user":current_user,"title":title})
